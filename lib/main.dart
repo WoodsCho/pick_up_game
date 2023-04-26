@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pick_up_game/firebase_options.dart';
+import 'package:pick_up_game/init_binding/init_binding.dart';
 import 'package:pick_up_game/screen/login_screen.dart';
 import 'package:pick_up_game/screen/root.dart';
 
@@ -20,8 +22,9 @@ class _App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       home: Root(),
+      initialBinding: InitBinding(),
     );
   }
 }
