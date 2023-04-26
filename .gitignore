@@ -45,3 +45,4 @@ app.*.map.json
 
 google-servixes.json
 firebase_options.dart
+pubspec.yaml
