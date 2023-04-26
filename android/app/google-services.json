@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "445172038331",
+    "project_id": "pickupgame-8b1de",
+    "storage_bucket": "pickupgame-8b1de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445172038331:android:0690ecc09b111d99d3879e",
+        "android_client_info": {
+          "package_name": "com.example.pick_up_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445172038331-lbp13hq91ucs1vr95r9idl7d8csuilvb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR1NJkB3hPXpERHuSpvXxy0JcB6HJyA0Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445172038331-fg70otfrnr9deu3hdn63251jfuj21d8p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "445172038331-7tt2kh9dj6u9oeb2rbbrf703ael0f29p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pickUpGame"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
