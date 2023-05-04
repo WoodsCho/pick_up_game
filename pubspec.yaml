@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.0-384.0.dev <4.0.0'
+  sdk: ">=2.16.0-134.0.dev <3.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,6 +30,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 
 
@@ -38,10 +40,20 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   google_sign_in: ^6.1.0
-  firebase_auth: ^4.2.5
+  firebase_auth: ^4.4.2
+
   get: ^4.6.5
   firebase_core: ^2.10.0
   cloud_firestore: ^4.1.10
+  firebase_storage: ^11.1.1
+  image_picker: ^0.8.4+4
+  google_maps_flutter: ^2.1.1
+  flutter_google_places: ^0.3.0
+  flutter_spinkit: ^5.1.0
+  flutter_signin_button: 2.0.0
+  image_cropper: 3.0.2
+  scroll_date_picker: ^3.7.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,8 +78,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - asset/img/logo.png
-   - asset/img/img.png
+   - asset/img/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -81,10 +92,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Roboto
+      fonts:
+      - asset: asset/fonts/Roboto-Medium.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
