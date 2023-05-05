@@ -82,6 +82,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             padding: EdgeInsets.only(left: 4,top: 10),
               height:50,
               child: Image.asset('asset/img/logo2.png',)),
+          centerTitle: false,
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),

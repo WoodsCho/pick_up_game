@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pick_up_game/common/color.dart';
 import 'package:pick_up_game/component/custom_text.dart';
-import 'package:pick_up_game/user/recruit_form.dart';
+import 'package:pick_up_game/screen/Guest/recruit/recruit_form.dart';
 
 import 'guest_recruitment.dart';
 
@@ -22,7 +22,6 @@ class _GuestMainState extends State<GuestMain> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-
           flexibleSpace: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -34,30 +33,30 @@ class _GuestMainState extends State<GuestMain> {
                 labelPadding: EdgeInsets.only(right: 10),
                 indicatorPadding: EdgeInsets.only(right: 13),
                 indicatorSize: TabBarIndicatorSize.label,
-labelColor: PRIMARY_COLOR,
+                labelColor: PRIMARY_COLOR,
                 unselectedLabelColor: Colors.black,
                 indicatorColor: SECOND_PRIMARY_COLOR,
                 tabs: [
-                CustomMainText(text: '구인'),
+                  CustomMainText(text: '구인'),
                   CustomMainText(text: '구팀'),
                   CustomMainText(text: '픽업')
-                  ],
+                ],
               ),
             ],
           ),
         ),
         body: TabBarView(
-
-
-          children: [GuestRecruitment(),
+          children: [
+            GuestRecruitment(),
             Center(child: CustomMainText(text: '구팀')),
-            Center(child: CustomMainText(text: '픽업'))],
+            Center(child: CustomMainText(text: '픽업'))
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: PRIMARY_COLOR,
           onPressed: () {
             setState(() {
-              Get.off(RecruitForm(),transition: Transition.cupertino);
+              Get.off(RecruitForm(), transition: Transition.cupertino);
             });
           },
           child: Icon(
