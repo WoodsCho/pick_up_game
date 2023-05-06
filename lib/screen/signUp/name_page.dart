@@ -36,29 +36,32 @@ class _NameInputPageState extends State<NameInputPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      child: Stack(children: [
-        Column(crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(mainText: '닉네임', subText: '을\n입력해주세요'),
-            SizedBox(height: 60,),
-            TextFormField(controller: _nameController,
-            style: TextStyle(
-              fontSize: 25,
-              color: PRIMARY_COLOR
-            ),
-            maxLength:20,
-            cursorHeight: 30,
-            decoration: InputDecoration(helperText: '픽업게임에서 사용할 닉네임을 입력해주세요'),)
-          ],
-        ),
-        Align(
-            alignment:Alignment.bottomCenter
-            ,child: NextButton(onPressed: _nameController.text.isNotEmpty ? widget.onNext : null, width: double.maxFinite,))
+    return SafeArea(
+      bottom: true,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        child: Stack(children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomText(mainText: '닉네임', subText: '을\n입력해주세요'),
+              SizedBox(height: 60,),
+              TextFormField(controller: _nameController,
+              style: TextStyle(
+                fontSize: 25,
+                color: PRIMARY_COLOR
+              ),
+              maxLength:20,
+              cursorHeight: 30,
+              decoration: InputDecoration(helperText: '픽업게임에서 사용할 닉네임을 입력해주세요'),)
+            ],
+          ),
+          Align(
+              alignment:Alignment.bottomCenter
+              ,child: NextButton(onPressed: _nameController.text.isNotEmpty ? widget.onNext : null, width: double.maxFinite,))
 
 
-      ])
+        ])
+      ),
     );
   }
 }

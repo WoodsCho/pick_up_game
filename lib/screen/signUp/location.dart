@@ -42,64 +42,67 @@ class _LocationInputPageState extends State<LocationInputPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(20.0),
-        child: Stack(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                CustomText(mainText: '지역', subText: '을\n입력해주세요.'),
-                SizedBox(
-                  height: 100,
-                ),
-                DropdownButton<String>(
-                  borderRadius: BorderRadius.circular(20),
-                  menuMaxHeight: 300,
-                  isExpanded: true,
-                  value: _selectedLocation,
-                  onChanged: (value) {
-                    setState(() {
-                      _selectedLocation = value!;
-                    });
-                  },
-                  items: _locations.map((location) {
-                    return DropdownMenuItem<String>(
-                      value: location,
-                      child: Text(
-                        location,
-                        style: TextStyle(fontSize: 20, color: PRIMARY_COLOR),
+    return SafeArea(
+      bottom: true,
+      child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  CustomText(mainText: '지역', subText: '을\n입력해주세요.'),
+                  SizedBox(
+                    height: 100,
+                  ),
+                  DropdownButton<String>(
+                    borderRadius: BorderRadius.circular(20),
+                    menuMaxHeight: 300,
+                    isExpanded: true,
+                    value: _selectedLocation,
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedLocation = value!;
+                      });
+                    },
+                    items: _locations.map((location) {
+                      return DropdownMenuItem<String>(
+                        value: location,
+                        child: Text(
+                          location,
+                          style: TextStyle(fontSize: 20, color: PRIMARY_COLOR),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: 16.0),
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      NextAndPrevioussButton(
+                        onPressed: widget.onPrevious,
+                        flex: 1,
+                        text: '이전',
+                        color: Colors.grey.shade300,
+                          textColor: Colors.grey
                       ),
-                    );
-                  }).toList(),
-                ),
-                SizedBox(height: 16.0),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    NextAndPrevioussButton(
-                      onPressed: widget.onPrevious,
-                      flex: 1,
-                      text: '이전',
-                      color: Colors.grey.shade300,
-                        textColor: Colors.grey
-                    ),
-                    NextAndPrevioussButton(
-                      onPressed: () {
-                        widget.onLocationChanged(_selectedLocation);
-                        widget.onNext();
-                      },
-                      flex: 2,
-                      text: '다음',
-                      color: PRIMARY_COLOR,textColor: Colors.white
-                    )
-                  ]),
-            )
-          ],
-        ));
+                      NextAndPrevioussButton(
+                        onPressed: () {
+                          widget.onLocationChanged(_selectedLocation);
+                          widget.onNext();
+                        },
+                        flex: 2,
+                        text: '다음',
+                        color: PRIMARY_COLOR,textColor: Colors.white
+                      )
+                    ]),
+              )
+            ],
+          )),
+    );
   }
 }

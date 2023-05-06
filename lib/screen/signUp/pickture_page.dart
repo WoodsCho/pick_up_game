@@ -87,81 +87,84 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.white),
-      padding: const EdgeInsets.all(20),
-      child: Stack(
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomText(mainText: '나만의 프로필', subText: '을\n입력해주세요'),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  SizedBox(
-                    height: 80,
-                  ),
-                  InkWell(
-                    onTap: () => _pickImage(ImageSource.gallery),
-                    child: _imageFile == null
-                        ? Container(
-                            decoration: BoxDecoration(shape: BoxShape.circle),
-                            height: 200,
-                            width: 80,
-                            child: Icon(
-                              Icons.person_pin,
-                              size: 200,
-                              color: Colors.grey,
+    return SafeArea(
+      bottom: true,
+      child: Container(
+        decoration: BoxDecoration(color: Colors.white),
+        padding: const EdgeInsets.all(20),
+        child: Stack(
+          children: <Widget>[
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomText(mainText: '나만의 프로필', subText: '을\n입력해주세요'),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    SizedBox(
+                      height: 80,
+                    ),
+                    InkWell(
+                      onTap: () => _pickImage(ImageSource.gallery),
+                      child: _imageFile == null
+                          ? Container(
+                              decoration: BoxDecoration(shape: BoxShape.circle),
+                              height: 200,
+                              width: 80,
+                              child: Icon(
+                                Icons.person_pin,
+                                size: 200,
+                                color: Colors.grey,
+                              ),
+                            )
+                          : Center(
+                              child: CircleAvatar(
+                                radius: 80,
+                                backgroundImage: FileImage(_imageFile!),
+                              ),
                             ),
-                          )
-                        : Center(
-                            child: CircleAvatar(
-                              radius: 80,
-                              backgroundImage: FileImage(_imageFile!),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextButton(
+                        onPressed: () => _pickImage(ImageSource.gallery),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 0.7, color: Colors.grey),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 4),
+                            child: Text(
+                              '사진 변경하기',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.grey[700]),
                             ),
                           ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  TextButton(
-                      onPressed: () => _pickImage(ImageSource.gallery),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 0.7, color: Colors.grey),
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 16.0, vertical: 4),
-                          child: Text(
-                            '사진 변경하기',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey[700]),
-                          ),
-                        ),
-                      )),
-                ],
-              ),
-            ],
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  NextAndPrevioussButton(onPressed: widget.onPrevious, flex: 1, text: '이전', color: Colors.grey.shade300,textColor: Colors.grey),
-                  NextAndPrevioussButton(onPressed: widget.onNext, flex: 2, text: '다음',color: PRIMARY_COLOR,textColor: Colors.white)
+                        )),
+                  ],
+                ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    NextAndPrevioussButton(onPressed: widget.onPrevious, flex: 1, text: '이전', color: Colors.grey.shade300,textColor: Colors.grey),
+                    NextAndPrevioussButton(onPressed: widget.onNext, flex: 2, text: '다음',color: PRIMARY_COLOR,textColor: Colors.white)
 
 
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -15,6 +15,7 @@ class RecruitForm extends StatefulWidget {
 }
 
 class _RecruitFormState extends State<RecruitForm> {
+
   Future<void> _backToLogin() async {
     if (!Platform.isAndroid) {
       return showCupertinoDialog<void>(
@@ -103,32 +104,36 @@ class _RecruitFormState extends State<RecruitForm> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        child: Scaffold(
+        child: SafeArea(
+          bottom: true  ,
+          child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        elevation: 0.2,
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-              onPressed: _backToLogin,
-              icon: Icon(
-                Icons.arrow_back_ios_new,
-                color: Colors.grey,
-              ),
-            );
-          },
-        ),
+          elevation: 0.2,
+          backgroundColor: Colors.white,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                onPressed: _backToLogin,
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.grey,
+                ),
+              );
+            },
+          ),
       ),
       body: PageView(
-        controller: _pageController,
-        physics: NeverScrollableScrollPhysics(),
-        onPageChanged: (index) {
-          WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
-        },
-        children: [DatePage()],
-        ),
+          controller: _pageController,
+          physics: NeverScrollableScrollPhysics(),
+          onPageChanged: (index) {
+            WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+          },
+          children: [DatePage(onNext:nextPage ,onPrevious: previousPage),
+          ],
+          ),
       ),
+        ),
     );
   }
 }
