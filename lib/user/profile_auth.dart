@@ -65,12 +65,12 @@ class _ProfileAuthState extends State<ProfileAuth> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: PRIMARY_COLOR,
+      backgroundColor: Colors.white,
       body: Container(
         child: Center(child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('asset/img/logo.png'),
+            Image.asset('asset/img/logo2.png'),
             SizedBox(height: 128,)
           ],
         )),

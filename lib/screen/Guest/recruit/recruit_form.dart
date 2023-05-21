@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pick_up_game/lay_out/deflault_layout.dart';
 import 'package:pick_up_game/screen/Guest/recruit/date_page.dart';
+import 'package:pick_up_game/screen/Guest/recruit/gym_picture.dart';
+import 'package:pick_up_game/screen/Guest/recruit/gym_information_page.dart';
 import 'package:pick_up_game/screen/home.dart';
 
 class RecruitForm extends StatefulWidget {
@@ -15,6 +19,22 @@ class RecruitForm extends StatefulWidget {
 }
 
 class _RecruitFormState extends State<RecruitForm> {
+  bool _isLoading = false;
+
+  DateTime? selectedStartTime;
+  DateTime? selectedEndTime;
+
+  Future<void> saveRecruitForm() async {
+    String userId = FirebaseAuth.instance.currentUser!.uid;
+    await FirebaseFirestore.instance
+        .collection('guestRecruit')
+        .doc(userId).collection('recruitPost')
+        .add({
+
+      'selectedStartTime': selectedStartTime,
+      'selectedEndTime': selectedEndTime,
+    });
+  }
 
   Future<void> _backToLogin() async {
     if (!Platform.isAndroid) {
@@ -87,6 +107,7 @@ class _RecruitFormState extends State<RecruitForm> {
       );
     }
   }
+
   PageController _pageController = PageController();
 
   void nextPage() {
@@ -104,36 +125,53 @@ class _RecruitFormState extends State<RecruitForm> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-        child: SafeArea(
-          bottom: true  ,
-          child: Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          elevation: 0.2,
+      child: SafeArea(
+        bottom: true,
+        child: Scaffold(
           backgroundColor: Colors.white,
-          leading: Builder(
-            builder: (BuildContext context) {
-              return IconButton(
-                onPressed: _backToLogin,
-                icon: Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.grey,
-                ),
-              );
+          appBar: AppBar(
+            elevation: 0.2,
+            backgroundColor: Colors.white,
+            leading: Builder(
+              builder: (BuildContext context) {
+                return IconButton(
+                  onPressed: _backToLogin,
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.grey,
+                  ),
+                );
+              },
+            ),
+          ),
+          body: PageView(
+            controller: _pageController,
+            physics: NeverScrollableScrollPhysics(),
+            onPageChanged: (index) {
+              WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
             },
+            children: [
+              GymInformationPage(),
+              DatePage(
+                onNext: () async {
+                  setState(() {
+                    _isLoading = true;
+                  });
+                  await saveRecruitForm();
+                  setState(() {
+                    _isLoading = false;
+                  });
+                  Navigator.pushReplacement(
+                      context, MaterialPageRoute(builder: (context) => Home()));
+                },
+                onPrevious: previousPage,
+                onEndTimeChanged: (starttime)=> selectedStartTime = starttime,
+                onStartTimeChanged: (endTime)=>selectedEndTime = endTime,
+              ),
+            ],
           ),
-      ),
-      body: PageView(
-          controller: _pageController,
-          physics: NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
-          },
-          children: [DatePage(onNext:nextPage ,onPrevious: previousPage),
-          ],
-          ),
-      ),
         ),
+      ),
     );
   }
 }

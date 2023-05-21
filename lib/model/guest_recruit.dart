@@ -1,4 +1,5 @@
 class GuestModel {
+  final String? gympictureUrl;
   final String? location;
   final String? dDay;
   final DateTime? date;
@@ -8,6 +9,7 @@ class GuestModel {
   final String? gender;
 
   GuestModel({
+    required this.gympictureUrl,
     required this.location,
     required this.dDay,
     required this.age,
@@ -20,7 +22,8 @@ class GuestModel {
   GuestModel.fromJson({
     required Map<String, dynamic> json,
   })
-      : location = json['location'],
+      : gympictureUrl = json['gympictureUrl'],
+        location = json['location'],
         dDay = json['dDay'],
         date = DateTime.parse(json['date']),
         requiredNumber = json['requiredNumber'],
@@ -30,6 +33,7 @@ class GuestModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'gympictureUrl' :'gympictureUrl',
       'location': location,
       'dDay': dDay,
       'date': '${date!.year}${date!.month.toString().padLeft(2, '0')}${date!.day

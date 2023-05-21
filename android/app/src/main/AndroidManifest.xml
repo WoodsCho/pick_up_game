@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example">
+    package="com.example.pickUpGame">
     <application
         android:label="pick_up_game"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAuEus1tWFbleJV8xsg20MUNxJg0VVBUig"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -43,6 +47,11 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAuEus1tWFbleJV8xsg20MUNxJg0VVBUig" />
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="8y2zrx33cu" />
+
 
     </application>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 </manifest>

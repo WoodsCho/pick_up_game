@@ -10,12 +10,12 @@ import 'package:pick_up_game/common/color.dart';
 import 'package:pick_up_game/component/bottom_button.dart';
 import 'package:pick_up_game/component/custom_text.dart';
 
-class ProfilePicturePage extends StatefulWidget {
+class GymPickturePage extends StatefulWidget {
   final VoidCallback onNext;
   final void Function(String)? onPictureChanged;
   final VoidCallback onPrevious;
 
-  const ProfilePicturePage({
+  const GymPickturePage({
     required this.onNext,
     required this.onPictureChanged,
     required this.onPrevious,
@@ -23,10 +23,10 @@ class ProfilePicturePage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ProfilePicturePageState createState() => _ProfilePicturePageState();
+  _GymPickturePage createState() => _GymPickturePage();
 }
 
-class _ProfilePicturePageState extends State<ProfilePicturePage> {
+class _GymPickturePage extends State<GymPickturePage> {
   File? _imageFile;
   bool? _isLoading;
 
@@ -114,7 +114,7 @@ class _ProfilePicturePageState extends State<ProfilePicturePage> {
                               child: Icon(
                                 Icons.person_pin,
                                 size: 200,
-                                color: Colors.grey.shade300,
+                                color: Colors.grey,
                               ),
                             )
                           : Center(

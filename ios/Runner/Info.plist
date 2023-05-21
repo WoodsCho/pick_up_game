@@ -16,6 +16,8 @@
 	<string>pick_up_game</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NMFClientId</key>
+    <string>YOUR_CLIENT_ID</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>

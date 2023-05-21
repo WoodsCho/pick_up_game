@@ -19,7 +19,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-
   Future<UserCredential?> signInWithGoogle() async {
     try {
       // Trigger the authentication flow
@@ -53,23 +52,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      backgroundColor: PRIMARY_COLOR,
+      backgroundColor: Colors.white,
       body: StreamBuilder<User?>(
           stream: null,
           builder: (context, snapshot) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset('asset/img/logo.png'),
-                SizedBox(
-                  height: 30.0,
-                ),
-                _appleLoginButton(),
-                SizedBox(height: 2,),
-                _googleloginButton()
-              ],
+            return Padding(
+              padding: const EdgeInsets.only(top: 156.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Image.asset('asset/img/logo2.png'),
+                  Column(
+                    children: [
+                      _appleLoginButton(),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      _googleloginButton(),
+                    ],
+                  ),
+                ],
+              ),
             );
           }),
     );
@@ -79,10 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return SignInButton(
       Buttons.GoogleDark,
       onPressed: signInWithGoogle,
-      
     );
   }
+
   Widget _appleLoginButton() {
-    return SignInButton(Buttons.Apple, onPressed: (){});
+    return SignInButton(Buttons.Apple, onPressed: () {});
   }
 }

@@ -59,6 +59,7 @@ class NextAndPrevioussButton extends StatelessWidget {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               foregroundColor: textColor,
+                elevation: 0,
 
 
 
